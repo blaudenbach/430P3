@@ -9,6 +9,6 @@ public class DrawingProgram {
     Model.setView(view);
     Command.setUndoManager(undoManager);
     Command.setModel(model);
-    view.show();
+    view.setVisible(true);
   }
 }

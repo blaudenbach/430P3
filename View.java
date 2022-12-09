@@ -33,6 +33,7 @@ class View extends JFrame {
   }
   private class DrawingPanel extends JPanel {
     private MouseListener currentMouseListener;
+    private MouseMotionListener currenMouseMotionListener;
     private KeyListener currentKeyListener;
     private FocusListener currentFocusListener;
     public DrawingPanel() {
@@ -56,6 +57,11 @@ class View extends JFrame {
       removeMouseListener(currentMouseListener);
       currentMouseListener =  newListener;
       super.addMouseListener(newListener);
+    }
+    public void addMouseMotionListener(MouseMotionListener newListener){
+      removeMouseMotionListener(currenMouseMotionListener);
+      currenMouseMotionListener = newListener;
+      super.addMouseMotionListener(newListener);
     }
     public void addKeyListener(KeyListener newListener) {
       removeKeyListener(currentKeyListener);
