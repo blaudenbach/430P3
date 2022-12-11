@@ -8,7 +8,6 @@ class DeleteCommand extends Command {
       Item item = (Item)(enumeration.nextElement());
       itemList.add(item);
     }
-    model.deleteSelectedItems();
   }
   public boolean undo() {
     Enumeration enumeration = itemList.elements();

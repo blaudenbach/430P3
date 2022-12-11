@@ -24,6 +24,7 @@ public class LineCommand extends Command {
   }
   public void execute() {
     model.addItem(line);
+    line.addElement(line);
   }
   public boolean undo() {
     model.removeItem(line);

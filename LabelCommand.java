@@ -15,6 +15,7 @@ public class LabelCommand extends Command {
   }
   public void execute() {
     model.addItem(label);
+    label.addElement(label);
   }
   public boolean undo() {
     model.removeItem(label);
