@@ -17,7 +17,7 @@ public abstract class Item implements Serializable {
     //uiContext.draw(this);
   }
 
-  public Enumeration getElements(){
+  public Enumeration<Item> getElements(){
     return elements.elements();
   }
 

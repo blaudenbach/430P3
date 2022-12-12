@@ -1,19 +1,14 @@
-import java.text.*;
 import java.io.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.lang.*;
-import javax.swing.*;
 import java.util.*;
 public class Model {
-  private Vector itemList;
-  private Vector selectedList;
+  private Vector<Item> itemList;
+  private Vector<Item> selectedList;
   //  list of "currently selected" items
   private static UIContext uiContext;
   private static View view;
   public Model() {
-    itemList = new Vector();
-    selectedList = new Vector();
+    itemList = new Vector<Item>();
+    selectedList = new Vector<Item>();
   }
   public static void setUI(UIContext uiContext) {
     Model.uiContext = uiContext;
@@ -51,13 +46,13 @@ public class Model {
     itemList.remove(item);
     view.refresh();
   }
-  public Enumeration getItems() {
+  public Enumeration<Item> getItems() {
     return itemList.elements();
   }
   public void setChanged() {
     view.refresh();
   }
-  public Enumeration getSelectedItems() {
+  public Enumeration<Item> getSelectedItems() {
     return selectedList.elements();
   }
   // other fields, methods and classes

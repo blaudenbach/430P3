@@ -1,10 +1,8 @@
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicTabbedPaneUI.MouseHandler;
-import javax.swing.text.JTextComponent;
+
 
 //import org.w3c.dom.events.MouseEvent;
 
-import javax.swing.JComponent.*;
 import javax.swing.event.MouseInputAdapter;
 
 //import org.w3c.dom.events.MouseEvent;
@@ -18,11 +16,10 @@ public class MoveButton extends JButton implements ActionListener {
     protected JPanel drawingPanel;
     protected View view;
     private MouseHandler mouseHandler;
-    private SelectCommand selectCommand;
     private UndoManager undoManager;
     private MoveCommand moveCommand;
-    private Vector itemList;
-    private Vector boxes;
+    private Vector<Item> itemList;
+    private Vector<Canvas> boxes;
 
     public MoveButton(UndoManager undoManager, View jFrame, JPanel jPanel){
         super("Move");
@@ -38,9 +35,9 @@ public class MoveButton extends JButton implements ActionListener {
         view.setCursor(new Cursor(Cursor.MOVE_CURSOR));
 
         //Create boxes next to objects
-        itemList = new Vector();
-        boxes = new Vector();
-        Enumeration enumeration = Command.model.getItems();
+        itemList = new Vector<Item>();
+        boxes = new Vector<Canvas>();
+        Enumeration<Item> enumeration = Command.model.getItems();
 
         while(enumeration.hasMoreElements()){
             Item item = (Item) (enumeration.nextElement());
@@ -48,8 +45,6 @@ public class MoveButton extends JButton implements ActionListener {
         }
 
         for(int i = 0; i < itemList.size(); i++){
-            System.out.println(Integer.toString(i));
-
             Item curItem = (Item) itemList.elementAt(i);
             Canvas box = new Canvas();
             box.setSize(10, 10);
@@ -74,9 +69,7 @@ public class MoveButton extends JButton implements ActionListener {
         }
 
         public void mouseDragged(MouseEvent event){
-            if(event.getComponent().getClass() == Canvas.class){
-                System.out.println("Mouse dragged on box");
-                
+            if(event.getComponent().getClass() == Canvas.class){                
                 //Get item next to box
                 for(int i = 0; i < boxes.size(); i++){
                     if(boxes.elementAt(i) == event.getComponent()){

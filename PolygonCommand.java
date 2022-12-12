@@ -1,22 +1,23 @@
-import java.awt.*;
 import java.util.*;
 
 public class PolygonCommand extends Command{
     private Polygon polygon;
 
-    public PolygonCommand(Vector lines){
-        for(int i = 0; i < lines.size(); i++){
-            Line line = (Line) lines.elementAt(i);
-            polygon.addLine(line);
-        }
+    public PolygonCommand(){
+        polygon = new Polygon();
+    }
+
+    public void addLine(Line line){
+        polygon.addLine(line);
     }
 
     public boolean undo(){
-        Enumeration elements = polygon.getLines();
+        Enumeration<Line> elements = polygon.getLines();
 
         while(elements.hasMoreElements()){
             Line line = (Line) elements.nextElement();
             model.removeItem(line);
+            polygon.elements.remove(line);
         }
 
         return true;
@@ -28,12 +29,16 @@ public class PolygonCommand extends Command{
     }
 
     public void execute(){
-        Enumeration elements = polygon.getLines();
+        Enumeration<Line> elements = polygon.getLines();
 
         while(elements.hasMoreElements()){
             Line line = (Line) elements.nextElement();
             model.addItem(line);
             polygon.addElement(line);
         }
+    }
+
+    public boolean end(){
+        return true;
     }
 }

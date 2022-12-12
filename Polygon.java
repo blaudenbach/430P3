@@ -2,10 +2,10 @@ import java.awt.*;
 import java.util.*;
 
 public class Polygon extends Item {
-    private Vector lines;
+    private Vector<Line> lines;
 
     public Polygon(){
-        lines = new Vector();
+        lines = new Vector<Line>();
     }
 
     public boolean includes(Point point){
@@ -30,7 +30,7 @@ public class Polygon extends Item {
         }
     }
 
-    public Enumeration getLines(){
+    public Enumeration<Line> getLines(){
         return lines.elements();
     }
 }

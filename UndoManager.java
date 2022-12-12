@@ -1,12 +1,12 @@
 import java.util.*;
 public class UndoManager {
   private static Model model;
-  private Stack history;
-  private Stack redoStack;
+  private Stack<Command> history;
+  private Stack<Command> redoStack;
   private Command currentCommand;
   public UndoManager() {
-    history = new Stack();
-    redoStack = new Stack();
+    history = new Stack<Command>();
+    redoStack = new Stack<Command>();
   }
   public static void setModel(Model model) {
     UndoManager.model = model;

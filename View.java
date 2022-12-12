@@ -16,6 +16,7 @@ class View extends JFrame {
   private JButton undoButton;
   private JButton redoButton;
   private JButton moveButton;
+  private JButton polygonButton;
   private static UndoManager undoManager;
     private String fileName;
   // other buttons to be added as needed;
@@ -44,7 +45,7 @@ class View extends JFrame {
       super.paintComponent(g);
       (NewSwingUI.getInstance()).setGraphics(g);
       g.setColor(Color.BLUE);
-      Enumeration enumeration = model.getItems();
+      Enumeration<Item> enumeration = model.getItems();
       while (enumeration.hasMoreElements()) {
         ((Item) enumeration.nextElement()).render();
       }
@@ -106,6 +107,7 @@ class View extends JFrame {
     undoButton = new UndoButton(undoManager);
     redoButton = new RedoButton(undoManager);
     moveButton = new MoveButton(undoManager, this, drawingPanel);
+    polygonButton = new PolygonButton(undoManager, this, drawingPanel);
     buttonPanel.add(lineButton);
     buttonPanel.add(labelButton);
     buttonPanel.add(selectButton);
@@ -115,7 +117,8 @@ class View extends JFrame {
     buttonPanel.add(undoButton);
     buttonPanel.add(redoButton);
     buttonPanel.add(moveButton);
-    this.setSize(720, 400);
+    buttonPanel.add(polygonButton);
+    this.setSize(760, 400);
   }
   public void refresh() {
     // code to access the Model update the contents of the drawing panel.

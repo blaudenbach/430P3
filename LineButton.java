@@ -37,7 +37,7 @@ public class LineButton  extends JButton implements ActionListener {
       
       if(mouseHandler.getPointCount() == 1){
         moveCounter++;
-        if((moveCounter > 1) &&event.getPoint() != mouseHandler.getPoint1()){
+        if((moveCounter > 1) && event.getPoint() != mouseHandler.getPoint1()){
           undoManager.undo();
         }
         lineCommand = new LineCommand(mouseHandler.getPoint1(), View.mapPoint(event.getPoint()));

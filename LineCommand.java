@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.text.*;
 public class LineCommand extends Command {
   private Line line;
   private int pointCount;
