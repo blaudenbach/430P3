@@ -7,6 +7,10 @@ public class PolygonCommand extends Command{
         polygon = new Polygon();
     }
 
+    public PolygonCommand(Polygon poly){
+        polygon = poly;
+    }
+
     public void addLine(Line line){
         polygon.addLine(line);
     }
@@ -16,9 +20,11 @@ public class PolygonCommand extends Command{
 
         while(elements.hasMoreElements()){
             Line line = (Line) elements.nextElement();
-            model.removeItem(line);
+            //model.removeItem(line);
             polygon.elements.remove(line);
         }
+
+        model.removeItem(polygon);
 
         return true;
     }
@@ -33,9 +39,9 @@ public class PolygonCommand extends Command{
 
         while(elements.hasMoreElements()){
             Line line = (Line) elements.nextElement();
-            model.addItem(line);
             polygon.addElement(line);
         }
+        model.addItem(polygon);
     }
 
     public boolean end(){

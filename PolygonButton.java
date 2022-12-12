@@ -35,12 +35,18 @@ public class PolygonButton extends JButton implements ActionListener{
         private Point lastPoint;
         private int pointCount = 0;
         private int moveCounter = 0;
+        private Polygon polygon = new Polygon();
 
         public void mouseClicked(MouseEvent event){
             if(SwingUtilities.isRightMouseButton(event)){
+                //lineCommand.undo();
+                lineCommand2.undo();
                 lastPoint = event.getPoint();
                 Line line = new Line(firstPoint, lastPoint);
-                polygonCommand.addLine(line);
+                polygon.addLine(line);
+                polygonCommand.undo();
+                polygonCommand = new PolygonCommand(polygon);
+                undoManager.beginCommand(polygonCommand);
                 pointCount = 0;
                 drawingPanel.removeMouseListener(this);
                 drawingPanel.removeMouseMotionListener(this);
@@ -51,17 +57,21 @@ public class PolygonButton extends JButton implements ActionListener{
                 if(++pointCount == 1){
                     firstPoint = event.getPoint();
                     lastPoint = event.getPoint();
-                    polygonCommand = new PolygonCommand();
-                    polygonCommand.addLine(new Line(firstPoint, lastPoint));
+                    polygonCommand = new PolygonCommand(polygon);
                     undoManager.beginCommand(polygonCommand);
                 }
                 else{
-                    removeTemp = true;
+                    //removeTemp = true;
+                    lineCommand.undo();
+                    lineCommand2.undo();
                     Line line = new Line(lastPoint, event.getPoint());
                     moveCounter = 0;
-                    polygonCommand.addLine(line);
+                    polygon.addLine(line);
                     lastPoint = event.getPoint();
-                    polygonCommand.addLine(new Line(firstPoint, lastPoint));
+                    polygon.addLine(new Line(firstPoint, lastPoint));
+                    polygonCommand.undo();
+                    polygonCommand = new PolygonCommand(polygon);
+                    undoManager.beginCommand(polygonCommand);
                 }
             }
         }

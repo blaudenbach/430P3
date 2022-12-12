@@ -33,4 +33,8 @@ public class Polygon extends Item {
     public Enumeration<Line> getLines(){
         return lines.elements();
     }
+
+    public String toString(){
+        return "Polygon with " + Integer.toString(lines.size()) + " sides";
+    }
 }

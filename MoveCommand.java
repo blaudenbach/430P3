@@ -13,6 +13,7 @@ public class MoveCommand extends Command {
 
     public void execute(){
         box.setLocation(location);
+        
     }
 
     public boolean undo(){

@@ -1,11 +1,5 @@
 import javax.swing.*;
-
-
-//import org.w3c.dom.events.MouseEvent;
-
 import javax.swing.event.MouseInputAdapter;
-
-//import org.w3c.dom.events.MouseEvent;
 
 import java.awt.Cursor;
 import java.awt.event.*;

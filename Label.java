@@ -25,4 +25,7 @@ public class Label extends Item {
   public Point getStartingPoint() {
     return startingPoint;
   }
+  public String toString(){
+    return "Label with text '" + text + "'";
+  }
 }

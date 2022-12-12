@@ -26,6 +26,8 @@ public abstract class Item implements Serializable {
   }
 
   public Point getLocation(){
+    System.out.println("Number of elements: " + Integer.toString(elements.size()));
+    System.out.println("Element 0: " + elements.elementAt(0).toString());
     if(elements.elementAt(0).getClass() == Line.class){
       Line firstLine = (Line) elements.elementAt(0);
       return firstLine.getPoint1();
@@ -36,5 +38,9 @@ public abstract class Item implements Serializable {
     }
 
     return new Point(0, 0);
+  }
+
+  public void move(int xOffset, int yOffset){
+    
   }
 }
