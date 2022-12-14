@@ -119,7 +119,7 @@ class View extends JFrame {
     buttonPanel.add(redoButton);
     buttonPanel.add(moveButton);
     
-    this.setSize(760, 400);
+    this.setSize(820, 440);
   }
   public void refresh() {
     // code to access the Model update the contents of the drawing panel.
