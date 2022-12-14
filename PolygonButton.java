@@ -66,10 +66,8 @@ public class PolygonButton extends JButton implements ActionListener{
                     lineCommand.undo();
                     lineCommand2.undo();
                     Line line = new Line(lastPoint, event.getPoint());
-                    //moveCounter = 0;
                     polygon.addLine(line);
                     lastPoint = event.getPoint();
-                    //polygon.addLine(new Line(firstPoint, lastPoint));
                     polygonCommand.undo();
                     polygonCommand = new PolygonCommand(polygon);
                     undoManager.beginCommand(polygonCommand);
@@ -83,19 +81,12 @@ public class PolygonButton extends JButton implements ActionListener{
                 if(moveCounter > 1){
                     lineCommand.undo();
                     lineCommand2.undo();
-                    /*
-                    undoManager.endCommand(lineCommand);
-                    undoManager.endCommand(lineCommand2);
-                    undoManager.undo();
-                    undoManager.undo();*/
                 }
                 
                 lineCommand = new LineCommand(lastPoint, event.getPoint());
                 lineCommand.execute();
-                //undoManager.beginCommand(lineCommand);
                 lineCommand2 = new LineCommand(firstPoint, event.getPoint());
                 lineCommand2.execute();
-                //undoManager.beginCommand(lineCommand2);*/
             }
         }
     }
