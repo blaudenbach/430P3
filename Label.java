@@ -5,6 +5,10 @@ public class Label extends Item {
   public Label(Point point) {
     startingPoint = point;
   }
+  public Label(Point point, String txt){
+    startingPoint = point;
+    text = txt;
+  }
   public void addCharacter(char character) {
     text += character;
   }
@@ -25,7 +29,18 @@ public class Label extends Item {
   public Point getStartingPoint() {
     return startingPoint;
   }
+  public void setStartingPoint(Point sPoint){
+    startingPoint = sPoint;
+  }
   public String toString(){
     return "Label with text '" + text + "'";
+  }
+  public Label move(double xOffset, double yOffset){
+    int newX = (int) (getStartingPoint().getX() + xOffset);
+    int newY = (int) (getStartingPoint().getY() + yOffset);
+    Label label = new Label(new Point(newX, newY), getText());
+    label.addElement(label);
+
+    return label;
   }
 }

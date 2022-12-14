@@ -67,7 +67,14 @@ public class MoveButton extends JButton implements ActionListener {
                 //Get item next to box
                 for(int i = 0; i < boxes.size(); i++){
                     if(boxes.elementAt(i) == event.getComponent()){
-                        moveCommand = new MoveCommand((Canvas) boxes.elementAt(i), (Item) itemList.elementAt(i), event.getLocationOnScreen());
+                        itemList = new Vector<Item>();
+                        Enumeration<Item> enumeration = Command.model.getItems();
+
+                        while(enumeration.hasMoreElements()){
+                            Item item = (Item) (enumeration.nextElement());
+                            itemList.add(item);
+                        }
+                        moveCommand = new MoveCommand((Canvas) boxes.elementAt(i), (Item) itemList.elementAt(i), event.getLocationOnScreen(), i);
                         undoManager.beginCommand(moveCommand);
                     }
                 }

@@ -35,5 +35,14 @@ public class Line extends Item {
   public String toString() {
     return "Line  from " + point1 + " to " + point2;
   }
+  public Line move(double xOffset, double yOffset){
+    int newX1 = (int) (getPoint1().getX() + xOffset);
+    int newY1 = (int) (getPoint1().getY() + yOffset);
+    int newX2 = (int) (getPoint2().getX() + xOffset);
+    int newY2 = (int) (getPoint2().getY() + yOffset);
+    Line line = new Line(new Point(newX1, newY1), new Point(newX2, newY2));
+    line.addElement(line);
+    return line;
+  }
 }
 

@@ -109,6 +109,7 @@ class View extends JFrame {
     moveButton = new MoveButton(undoManager, this, drawingPanel);
     polygonButton = new PolygonButton(undoManager, this, drawingPanel);
     buttonPanel.add(lineButton);
+    buttonPanel.add(polygonButton);
     buttonPanel.add(labelButton);
     buttonPanel.add(selectButton);
     buttonPanel.add(deleteButton);
@@ -117,7 +118,7 @@ class View extends JFrame {
     buttonPanel.add(undoButton);
     buttonPanel.add(redoButton);
     buttonPanel.add(moveButton);
-    buttonPanel.add(polygonButton);
+    
     this.setSize(760, 400);
   }
   public void refresh() {

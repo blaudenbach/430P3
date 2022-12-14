@@ -11,7 +11,6 @@ public class PolygonButton extends JButton implements ActionListener{
     private LineCommand lineCommand;
     private LineCommand lineCommand2;
     private UndoManager undoManager;
-    private boolean removeTemp = false;
 
     public PolygonButton(UndoManager undoManager, View jFrame, JPanel jPanel){
         super("Polygon");
@@ -38,11 +37,14 @@ public class PolygonButton extends JButton implements ActionListener{
         private Polygon polygon = new Polygon();
 
         public void mouseClicked(MouseEvent event){
+            moveCounter = 0;
             if(SwingUtilities.isRightMouseButton(event)){
-                //lineCommand.undo();
+                lineCommand.undo();
                 lineCommand2.undo();
+                Line line = new Line(lastPoint, event.getPoint());
+                polygon.addLine(line);
                 lastPoint = event.getPoint();
-                Line line = new Line(firstPoint, lastPoint);
+                line = new Line(firstPoint, lastPoint);
                 polygon.addLine(line);
                 polygonCommand.undo();
                 polygonCommand = new PolygonCommand(polygon);
@@ -61,14 +63,13 @@ public class PolygonButton extends JButton implements ActionListener{
                     undoManager.beginCommand(polygonCommand);
                 }
                 else{
-                    //removeTemp = true;
                     lineCommand.undo();
                     lineCommand2.undo();
                     Line line = new Line(lastPoint, event.getPoint());
-                    moveCounter = 0;
+                    //moveCounter = 0;
                     polygon.addLine(line);
                     lastPoint = event.getPoint();
-                    polygon.addLine(new Line(firstPoint, lastPoint));
+                    //polygon.addLine(new Line(firstPoint, lastPoint));
                     polygonCommand.undo();
                     polygonCommand = new PolygonCommand(polygon);
                     undoManager.beginCommand(polygonCommand);
@@ -78,22 +79,23 @@ public class PolygonButton extends JButton implements ActionListener{
 
         public void mouseMoved(MouseEvent event){
             if(pointCount > 0){
-                if(removeTemp == true){
-                    lineCommand2.undo();
-                    removeTemp = false;
-                }
                 moveCounter++;
                 if(moveCounter > 1){
-
+                    lineCommand.undo();
+                    lineCommand2.undo();
+                    /*
                     undoManager.endCommand(lineCommand);
                     undoManager.endCommand(lineCommand2);
                     undoManager.undo();
-                    undoManager.undo();
+                    undoManager.undo();*/
                 }
+                
                 lineCommand = new LineCommand(lastPoint, event.getPoint());
-                undoManager.beginCommand(lineCommand);
+                lineCommand.execute();
+                //undoManager.beginCommand(lineCommand);
                 lineCommand2 = new LineCommand(firstPoint, event.getPoint());
-                undoManager.beginCommand(lineCommand2);
+                lineCommand2.execute();
+                //undoManager.beginCommand(lineCommand2);*/
             }
         }
     }

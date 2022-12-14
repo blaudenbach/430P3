@@ -46,6 +46,11 @@ public class Model {
     itemList.remove(item);
     view.refresh();
   }
+  public void replaceItem(int index, Item newItem){
+    itemList.remove(index);
+    itemList.add(index, newItem);
+    view.refresh();
+  }
   public Enumeration<Item> getItems() {
     return itemList.elements();
   }
